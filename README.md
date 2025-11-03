@@ -1,46 +1,60 @@
-# AWS project 1 - Building a custom VPC from scracth
-## Overview
-In this project i created a **custom virtual private cloud(VPC)** in AWS to understand how networking works in cloud.
+##  VPC Traffic flow and security ##
+## Overview ##
+In this project i have created **Route tables** , **Security groups** and **Network ACL (Access control list)**.
 ## Architecture diagram ##
 
 <pre>
-              
-                               +----------------+
-                               |     Internet   |
-                               +-------+--------+
-                                       |
-                               [Intrnet gateaway]
-                                       |
-                               +----------------+
-                               |  Public subnet |
-                               |  (10.0.0.0/24) |                           
-                               +--------+-------+
-                                        |
-                               [VPC: 10.0.0.0/16]
++----------------------------------+
+|        VPC (10.0.0.0/16)         |
+|                                  |
+|   +--------------------------+   |
+|   |     Internet Gateway     |   |
+|   +------------+-------------+   |
+|                |                 |
+|   +--------------------------+   |
+|   |      Route Table         |   |
+|   |  0.0.0.0/0 → IGW         |   |
+|   +------------+-------------+   |
+|                |                 |
+|   +--------------------------+   |
+|   |      Public Subnet       |   |
+|   |      (10.0.0.0/24)       |   |
+|   |   +------------------+   |   |
+|   |   |  Security Group  |   |   |
+|   |   +------------------+   |   |
+|   +--------------------------+   |
+|          Network ACL             |
++----------------------------------+
 </pre>
-*Note: This diagram show data flow not creation order*
 
-## Steps to Create the VPC ##
+## Steps followed ##
+1. Created a **Route table** and attached to the **public subnet** by editing subnet association.
+2. Next Created a **security group** and added inbound  rule.
+3. Created **Network ACL** And created inbound and outbound rules.and then attached to subnet.
 
-1. **Set up a VPC**. To set up a VPC i had to **define IPv4 CIDR block**.
-2. **Created a Subnet** and selected availablity zone and then enabled auto assign ip settings.
-3. **Created an internet gateway** and attached to VPC.
 
 ## Screenshots ##
-<img width="3420" height="2196" alt="Image 10-27-25 at 6 09 AM" src="https://github.com/user-attachments/assets/e685bc66-505b-40f7-b527-610c0c0e99f0" />
-<img width="2930" height="1430" alt="Image 11-3-25 at 12 44 AM" src="https://github.com/user-attachments/assets/5acb229d-cbd2-4bea-909c-0f2132e80aa2" />
-<img width="2930" height="656" alt="Image 11-3-25 at 12 45 AM" src="https://github.com/user-attachments/assets/0d06a91b-5be1-466b-bc4a-1e660307c546" />
-<img width="1404" height="1364" alt="Image 11-3-25 at 3 05 AM" src="https://github.com/user-attachments/assets/5a36f7e1-050a-4c44-970f-e7f9afeab016" />
+<img width="3394" height="1088" alt="Image 11-3-25 at 12 44 AM (1)" src="https://github.com/user-attachments/assets/87303d26-4bff-4814-8ddc-9221843dc5b9" />
+
+<img width="2936" height="976" alt="Image 11-3-25 at 12 46 AM" src="https://github.com/user-attachments/assets/14a1bced-377e-4427-bba8-aebee88227a3" />
+
+<img width="2904" height="988" alt="Image 11-3-25 at 12 47 AM" src="https://github.com/user-attachments/assets/f0be8e92-eb8a-44cb-a58d-3d471bf5ed60" />
+
+<img width="2926" height="1052" alt="Image 11-3-25 at 12 46 AM 2" src="https://github.com/user-attachments/assets/48ffd1bf-706d-42db-8ec5-73b3447a6598" />
+
+<img width="2912" height="1136" alt="Image 11-3-25 at 12 46 AM (1)" src="https://github.com/user-attachments/assets/700e8fad-fa9b-4ce5-aa21-6b82766cc233" />
+
+<img width="976"  height="651" alt="Part2 architecture drawio" src="https://github.com/user-attachments/assets/a82ce65f-f29c-4325-9026-cd93aca0fe1a" />
 
 ## Key learnings ##
-- Understood AWS networking fundamentals like VPC,CIDR,Subnets,intenet gateway
-- Created a custom VPC from scratch
+- Learned about route tables and how they are used to distribute or send the data to its desitination
+- Acheived an idea on security groups and learned how to update inbound rules.
+- Learned about Rule number 100.
+- Learned about Network ACL And rules.
 
 ## Next steps ##
-In the next project i will extend this setup and build VPC Traffic flow and Security.
+In the next project i will extend this seup and build Private subnet.
 
-## CREDITS/TOOLS ##
-**Repository by:** Akhil Thalari
 
-**Tools used:** AWS management console
+
 
